@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nyc_skyline"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:measureAllChildren="false" 
+    android:id="@+id/login_layout">
+
+    <EditText
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/passwordText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:text="User name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginText"
+        android:layout_alignRight="@+id/loginText"
+        android:layout_centerVertical="true"
+        android:background="#ffffff"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="password" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_below="@+id/passwordText"
+        android:layout_marginTop="42dp"
+        android:layout_toLeftOf="@+id/BUFFER_DO_NOT_USE"
+        android:background="#2ecc71"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loginButton"
+        android:layout_alignBottom="@+id/loginButton"
+        android:layout_alignRight="@+id/passwordText"
+        android:background="#2ecc71"
+        android:text="Sign-up" />
+
+    <TextView
+        android:id="@+id/BUFFER_DO_NOT_USE"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/loginButton"
+        android:layout_alignTop="@+id/loginButton"
+        android:layout_toLeftOf="@+id/signupButton"
+        android:ems="10"
+        android:visibility="invisible" 
+       />
+</RelativeLayout>
