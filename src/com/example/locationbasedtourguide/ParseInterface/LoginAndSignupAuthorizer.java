@@ -2,9 +2,12 @@ package com.example.locationbasedtourguide.ParseInterface;
 
 import java.util.List;
 
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -52,15 +55,31 @@ public class LoginAndSignupAuthorizer {
 	}
 
 	public void signUpNewUser(String user, String password){
-		NewUserSignUp newUser = new NewUserSignUp();
+		ParseUser pu = new ParseUser();
+		pu.setUsername(user);
+		pu.setPassword(password);
 
-		newUser.execute(user, password);
+		pu.signUpInBackground(new SignUpCallback() {
+			public void done(ParseException e) {
+				if (e == null) {
+					Toast.makeText(context, "Successful signup", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(context, "That name has already been taken", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
 	}
 
 	public void loginUser(String user, String password){
-		UserLogin usr = new UserLogin();
-
-		usr.execute(user, password);
+		ParseUser.logInInBackground(user, password, new LogInCallback() {
+			public void done(ParseUser user, ParseException e) {
+				if (user != null) {
+					Toast.makeText(context, "Successful login", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(context, "Unsuccessful login", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
 	}
 
 	private class NewUserSignUp extends AsyncTask<String, Void, Integer>{
@@ -92,7 +111,6 @@ public class LoginAndSignupAuthorizer {
 			//launch the tour guide
 
 		}
-
 	}
 
 	private class UserLogin extends AsyncTask<String, Void, Integer>{

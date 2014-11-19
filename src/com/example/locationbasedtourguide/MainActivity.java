@@ -2,6 +2,7 @@ package com.example.locationbasedtourguide;
 
 import com.example.locationbasedtourguide.ParseInterface.LoginAndSignupAuthorizer;
 import com.parse.Parse;
+import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_layout);
 		Parse.initialize(this, "z4BT72BT3CZl4tas1zE9EKT0WPPeKMH8OpMWI2M9", "lrPhBajdOjiwPEcvGrg7VBHTxb9h4a7tlDYQpyJW");
-
+		
 		accountAuthorizer = new LoginAndSignupAuthorizer(this);
 		mBaseLayout =(RelativeLayout) this.findViewById(R.id.login_layout);
 		mLoginButton = (Button) findViewById(R.id.loginButton);
@@ -40,7 +41,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 //				Toast.makeText(getApplicationContext(), "LOGIN CLICKED", Toast.LENGTH_SHORT).show();
 				accountAuthorizer.loginUser(mUserNameText.getText().toString(), mPasswordText.getText().toString());
-
 			}
 		});
 		

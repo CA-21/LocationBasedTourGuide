@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/nyc_skyline"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:measureAllChildren="false" 
-    android:id="@+id/login_layout">
+    android:measureAllChildren="false" >
 
     <EditText
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_above="@+id/passwordText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
         android:background="#ffffff"
         android:ems="10"
-        android:text="User name" >
+        android:fadingEdge="horizontal"
+        android:nextFocusDown="@id/passwordText"
+        android:paddingLeft="10dp"
+        android:text="USER NAME"
+        android:typeface="sans" >
 
         <requestFocus />
     </EditText>
@@ -25,13 +29,14 @@
     <EditText
         android:id="@+id/passwordText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/loginText"
         android:layout_alignRight="@+id/loginText"
         android:layout_centerVertical="true"
         android:background="#ffffff"
         android:ems="10"
         android:inputType="textPassword"
+        android:paddingLeft="10dp"
         android:text="password" />
 
     <Button
@@ -43,7 +48,10 @@
         android:layout_marginTop="42dp"
         android:layout_toLeftOf="@+id/BUFFER_DO_NOT_USE"
         android:background="#2ecc71"
-        android:text="Login" />
+        android:fadingEdge="horizontal|vertical"
+        android:text="Login"
+        android:textAllCaps="true"
+        android:typeface="sans" />
 
     <Button
         android:id="@+id/signupButton"
@@ -53,7 +61,10 @@
         android:layout_alignBottom="@+id/loginButton"
         android:layout_alignRight="@+id/passwordText"
         android:background="#2ecc71"
-        android:text="Sign-up" />
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="SIGN-UP"
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/BUFFER_DO_NOT_USE"
