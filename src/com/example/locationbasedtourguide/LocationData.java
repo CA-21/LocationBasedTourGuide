@@ -16,7 +16,6 @@ public interface LocationData {
 	public int getChronologicalOrdering();
 
 	
-	public void methodName2();
-	public void doNti();
+
 
 }
