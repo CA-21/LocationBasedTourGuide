@@ -10,6 +10,6 @@ public class Tour implements Comparable<Tour> {
 		return name.compareTo(another.name);
 	}
 	
-	public void tester();
+	public void tester(){}
 
 }
