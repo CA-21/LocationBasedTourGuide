@@ -16,29 +16,13 @@ import com.parse.ParseUser;
  * @author matt
  *
  */
-public class TourDataSaverAndRetriever {
+public class TourGetterAndCreator {
 	
-	//may need this not sure
-	public static boolean tourAlreadyExists(String nameOfTour){
-		ParseUser currentUser = ParseUser.getCurrentUser();
-		ParseQuery<Tour> query = Tour.getQuery();
-		query.whereEqualTo("user", currentUser);
-		query.whereEqualTo(Tour.NAME_KEY, nameOfTour);
-		try {
-			List<Tour> tours = query.find();
-			if(tours.size() != 1){
-				return false;
-			} else {
-				tours.get(0);
-				return true;
-			}
-		} catch (ParseException e) {
-			return false;
-		}
-	}
-
 	/**
-	 * Returns null if something went wrong, otherwise tour
+	 *	Returns a tour with name tourName. If newTour is true then
+	 *	a new tour is created and pushed to parse, otherwise an old
+	 *	tour is retrieved from parse. If newTour is false and no
+	 *  existing tours match the name then null is returned.
 	 */
 	public static Tour getTour(String tourName, boolean newTour){
 		ParseUser currentUser = ParseUser.getCurrentUser();
@@ -63,6 +47,10 @@ public class TourDataSaverAndRetriever {
 		return null;
 	}
 	
+	/**
+	 * Retrieves all tour names from Parse. If currentUserOnly is true,
+	 * only tour names of tours created by the current user will be returned
+	 */
 	public static SortedSet<String> getAllTourNames(boolean currentUserOnly){
 		ParseQuery<Tour> query = Tour.getQuery();
 		SortedSet<String> toRet = new TreeSet<String>();

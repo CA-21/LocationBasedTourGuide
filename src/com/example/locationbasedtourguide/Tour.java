@@ -16,6 +16,10 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	//save this as an array when serializing out
 	private ArrayList<LocationData> locations;
 
+	/**
+	 * DO NOT CALL THIS DIRECTLY. USE TourGettingAndCreator
+	 * @param name
+	 */
 	public Tour(String name){
 		this.add(NAME_KEY,  name);
 		locations = new ArrayList<LocationData>();
