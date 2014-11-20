@@ -33,13 +33,13 @@ public final class R {
         public static final int taj_mahal=0x7f020008;
     }
     public static final class id {
-        public static final int BUFFER_DO_NOT_USE=0x7f080004;
+        public static final int BUFFER_DO_NOT_USE=0x7f080005;
         public static final int action_settings=0x7f080006;
         public static final int loginButton=0x7f080003;
-        public static final int loginText=0x7f080001;
+        public static final int loginText=0x7f080002;
         public static final int login_layout=0x7f080000;
-        public static final int passwordText=0x7f080002;
-        public static final int signupButton=0x7f080005;
+        public static final int passwordText=0x7f080001;
+        public static final int signupButton=0x7f080004;
     }
     public static final class layout {
         public static final int login_layout=0x7f030000;

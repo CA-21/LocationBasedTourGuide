@@ -99,6 +99,16 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 		this.saveInBackground(saveCallback);
 	}
 	
+	public void asyncSaveEventually(){
+		updateLocations();
+		this.saveEventually();
+	}
+	
+	public void asyncSaveEventually(SaveCallback saveCallback){
+		updateLocations();
+		this.saveEventually(saveCallback);
+	}
+	
 	public static ParseQuery<Tour> getQuery(){
 		return ParseQuery.getQuery(Tour.class);
 	}

@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import com.example.locationbasedtourguide.LocationData;
+
 import com.example.locationbasedtourguide.Tour;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
