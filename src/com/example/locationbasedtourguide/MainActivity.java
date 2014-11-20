@@ -26,6 +26,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_layout);
+		
+		//Will do this later if need be
+		//Parse.enableLocalDatastore(this);
 		Parse.initialize(this, "z4BT72BT3CZl4tas1zE9EKT0WPPeKMH8OpMWI2M9", "lrPhBajdOjiwPEcvGrg7VBHTxb9h4a7tlDYQpyJW");
 		
 		accountAuthorizer = new LoginAndSignupAuthorizer(this);
