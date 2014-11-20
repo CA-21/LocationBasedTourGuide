@@ -14,4 +14,9 @@ public interface LocationData {
 	public double getLattitude();
 	public double getRadius();
 	public int getChronologicalOrdering();
+
+	
+	public void methodName2();
+	public void doNti();
+
 }
