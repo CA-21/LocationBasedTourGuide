@@ -15,6 +15,7 @@ public interface LocationData {
 	public double getRadius();
 	public int getChronologicalOrdering();
 
+	public void someRandomThing();
 	
 
 
