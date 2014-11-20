@@ -1,7 +1,7 @@
 package com.example.locationbasedtourguide;
 
 public interface LocationData {
-	
+
 	public boolean hasText();
 	public boolean hasImage();
 	public boolean hasAudio();
@@ -13,4 +13,5 @@ public interface LocationData {
 	public double getLongitude();
 	public double getLattitude();
 	public double getRadius();
+	public int getChronologicalOrdering();
 }

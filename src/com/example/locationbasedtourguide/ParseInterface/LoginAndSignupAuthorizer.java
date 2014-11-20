@@ -1,7 +1,5 @@
 package com.example.locationbasedtourguide.ParseInterface;
 
-import java.util.List;
-
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
