@@ -8,6 +8,58 @@
     android:clipToPadding="false"
     android:measureAllChildren="false" >
 
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/loginText"
+        android:layout_centerVertical="true"
+        android:background="#ffffff"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:nextFocusDown="@+id/loginButton"
+        android:nextFocusForward="@+id/loginButton"
+        android:nextFocusLeft="@+id/loginText"
+        android:nextFocusRight="@+id/loginButton"
+        android:nextFocusUp="@+id/loginText"
+        android:paddingLeft="10dp"
+        android:text="password" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@+id/passwordText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:nextFocusDown="@id/passwordText"
+        android:nextFocusRight="@id/passwordText"
+        android:overScrollMode="never"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="USER NAME"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/signupButton"
+        android:layout_alignBottom="@+id/signupButton"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_toLeftOf="@+id/BUFFER_DO_NOT_USE"
+        android:background="#2ecc71"
+        android:text="Login"
+        android:textAllCaps="true"
+        android:typeface="sans" />
+
     <TextView
         android:id="@+id/BUFFER_DO_NOT_USE"
         android:layout_width="10dp"
@@ -17,96 +69,17 @@
         android:ems="10"
         android:visibility="invisible" />
 
-    <ViewFlipper
-        android:id="@+id/bottomViewFlipper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:nextFocusDown="@+id/loginButton"
-            android:nextFocusForward="@+id/loginButton"
-            android:nextFocusLeft="@+id/loginText"
-            android:nextFocusRight="@+id/loginButton"
-            android:nextFocusUp="@+id/loginText"
-            android:paddingLeft="10dp"
-            android:text="password" />
-
-        <Button
-            android:id="@+id/takeTourButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="TAKE A TOUR"
-            android:background="#2ecc71" />
-
-    </ViewFlipper>
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bottomViewFlipper"
-        android:layout_below="@+id/bottomViewFlipper"
-        android:layout_marginTop="23dp"
-        android:layout_toLeftOf="@+id/BUFFER_DO_NOT_USE"
-        android:background="#2ecc71"
-        android:fadingEdge="horizontal|vertical"
-        android:text="Login"
-        android:textAllCaps="true"
-        android:typeface="sans" />
-
     <Button
         android:id="@+id/signupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loginButton"
-        android:layout_alignBottom="@+id/loginButton"
-        android:layout_alignRight="@+id/bottomViewFlipper"
+        android:layout_alignRight="@+id/passwordText"
+        android:layout_below="@+id/passwordText"
+        android:layout_marginTop="35dp"
         android:background="#2ecc71"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:text="SIGN-UP"
         android:typeface="sans" />
-
-    <ViewFlipper
-        android:id="@+id/topViewFlipper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomViewFlipper"
-        android:layout_alignLeft="@+id/bottomViewFlipper" >
-
-        <EditText
-            android:id="@+id/loginText"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="30dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:imeOptions="actionNext"
-            android:overScrollMode="never"
-            android:paddingLeft="10dp"
-            android:singleLine="true"
-            android:text="USER NAME"
-            android:typeface="sans" >
-
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/editTourButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="EDIT OR CREATE TOUR" 
-            android:background="#2ecc71"/>
-
-    </ViewFlipper>
 
 </RelativeLayout>

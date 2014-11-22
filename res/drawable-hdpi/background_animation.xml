@@ -2,25 +2,25 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android" >
       <item
         android:drawable="@drawable/nyc_skyline"
-        android:duration="7000"/>
+        android:duration="5500"/>
     <item
         android:drawable="@drawable/space_needle"
-        android:duration="7000"/>
+        android:duration="5500"/>
     <item
         android:drawable="@drawable/golden_gate"
-        android:duration="7000"/>
+        android:duration="5500"/>
     <item
         android:drawable="@drawable/nyc"
-        android:duration="7000"/>
+        android:duration="5500"/>
     
      <item
         android:drawable="@drawable/statue_libert"
-        android:duration="7000"/>
+        android:duration="5500"/>
      <item
         android:drawable="@drawable/pyramids"
-        android:duration="7000"/>
+        android:duration="5500"/>
      <item
         android:drawable="@drawable/taj_mahal"
-        android:duration="7000"/>     
+        android:duration="5500"/>     
 
 </animation-list>

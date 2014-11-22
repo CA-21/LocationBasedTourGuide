@@ -20,8 +20,8 @@ public class TourGetterAndCreator {
 	
 	/**
 	 *	Returns a tour with name tourName. If newTour is true then
-	 *	a new tour is created and pushed to parse, otherwise an old
-	 *	tour is retrieved from parse. If newTour is false and no
+	 *	a new tour is created and pushed to Parse, otherwise an old
+	 *	tour is retrieved from Parse. If newTour is false and no
 	 *  existing tours match the name then null is returned.
 	 */
 	public static Tour getTour(String tourName, boolean newTour){

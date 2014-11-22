@@ -5,6 +5,8 @@ import tour.TourGalleryActivity;
 import com.example.locationbasedtourguide.ParseInterface.LoginAndSignupAuthorizer;
 import com.parse.Parse;
 
+import CustomAnimations.ResizeAndTranslateAnimation;
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,11 +27,11 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class LoginActivity extends Activity {
-	
+
 	private LoginAndSignupAuthorizer accountAuthorizer;
 
 	private LoginPageViewHolder loginPageViewHolder;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class LoginActivity extends Activity {
 		//Will do this later if need be
 		//Parse.enableLocalDatastore(this);
 		Parse.initialize(this, "z4BT72BT3CZl4tas1zE9EKT0WPPeKMH8OpMWI2M9", "lrPhBajdOjiwPEcvGrg7VBHTxb9h4a7tlDYQpyJW");
-		
+
 		//Collect the views into the loginPageViewHolder ******************************************************************************
 		this.loginPageViewHolder = new LoginPageViewHolder();
 		loginPageViewHolder.mBaseLayout =(RelativeLayout) this.findViewById(R.id.login_layout);
@@ -46,19 +48,26 @@ public class LoginActivity extends Activity {
 		loginPageViewHolder.mSignUpButton = (Button) findViewById(R.id.signupButton);
 		loginPageViewHolder.mPasswordText = (EditText) findViewById(R.id.passwordText);
 		loginPageViewHolder.mUserNameText = (EditText) findViewById(R.id.loginText);
-		loginPageViewHolder.mTopFlipper = (ViewFlipper) findViewById(R.id.topViewFlipper);
-		loginPageViewHolder.mBottomFlipper= (ViewFlipper) findViewById(R.id.bottomViewFlipper);
-		loginPageViewHolder.mTakeButton = (Button) findViewById(R.id.takeTourButton);
-		loginPageViewHolder.mEditOrCreateButton = (Button) findViewById(R.id.editTourButton);
+
 		
+		
+//		loginPageViewHolder.mUserNameText.setAnimation(fade.);
+//		loginPageViewHolder.mPasswordText.setAnimation(fade);
+
+
+		//		loginPageViewHolder.mTopFlipper = (ViewFlipper) findViewById(R.id.topViewFlipper);
+		//		loginPageViewHolder.mBottomFlipper= (ViewFlipper) findViewById(R.id.bottomViewFlipper);
+		//		loginPageViewHolder.mTakeButton = (Button) findViewById(R.id.takeTourButton);
+		//		loginPageViewHolder.mEditOrCreateButton = (Button) findViewById(R.id.editTourButton);
+		//		
 		//SetUp view flipper animation upon login ******************************************************************************
-		loginPageViewHolder.mTopFlipper.setInAnimation(this,R.animator.fade_in);
-		loginPageViewHolder.mTopFlipper.setOutAnimation(this,R.animator.fade_out);
-		loginPageViewHolder.mBottomFlipper.setInAnimation(this,R.animator.fade_in);
-		loginPageViewHolder.mBottomFlipper.setOutAnimation(this,R.animator.fade_out);
-		
-		
-		
+		//		loginPageViewHolder.mTopFlipper.setInAnimation(this,R.animator.fade_in);
+		//		loginPageViewHolder.mTopFlipper.setOutAnimation(this,R.animator.fade_out);
+		//		loginPageViewHolder.mBottomFlipper.setInAnimation(this,R.animator.fade_in);
+		//		loginPageViewHolder.mBottomFlipper.setOutAnimation(this,R.animator.fade_out);
+
+
+
 		accountAuthorizer = new LoginAndSignupAuthorizer(this,loginPageViewHolder); 
 
 		// Set listeners *********************************************************************************************************************
@@ -69,10 +78,10 @@ public class LoginActivity extends Activity {
 					KeyEvent event) {
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
 					loginPageViewHolder.mLoginButton.performClick();
-					
+
 					InputMethodManager imm = (InputMethodManager)getSystemService(
-							  Context.INPUT_METHOD_SERVICE);
-							imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+							Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 					return true;
 				}
 				return false;
@@ -99,34 +108,34 @@ public class LoginActivity extends Activity {
 
 			}
 		});
-		
-		loginPageViewHolder.mTakeButton.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				
-				Intent i = new Intent(LoginActivity.this,TourGalleryActivity.class);
-				i.putExtra(TourGalleryActivity.TOUR_GALLERY_TYPE, TourGalleryActivity.TAKE);
-				startActivity(i);
-				
-				//Can do a start activity forResult and then just finish in there, but 
-				//leaving as is for now because it is easier. 
-				
-				//Prevents user from hitting the back button to get to the login screen
-				finish();
-			}
-		});
-		
-		loginPageViewHolder.mEditOrCreateButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(LoginActivity.this,TourGalleryActivity.class);
-				i.putExtra(TourGalleryActivity.TOUR_GALLERY_TYPE, TourGalleryActivity.EDIT_AND_CREATE);
-				startActivity(i);
-				finish();
-			}
-		});
+//		loginPageViewHolder.mTakeButton.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//
+//				Intent i = new Intent(LoginActivity.this,TourGalleryActivity.class);
+//				i.putExtra(TourGalleryActivity.TOUR_GALLERY_TYPE, TourGalleryActivity.TAKE);
+//				startActivity(i);
+//
+//				//Can do a start activity forResult and then just finish in there, but 
+//				//leaving as is for now because it is easier. 
+//
+//				//Prevents user from hitting the back button to get to the login screen
+//				finish();
+//			}
+//		});
+//
+//		loginPageViewHolder.mEditOrCreateButton.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				Intent i = new Intent(LoginActivity.this,TourGalleryActivity.class);
+//				i.putExtra(TourGalleryActivity.TOUR_GALLERY_TYPE, TourGalleryActivity.EDIT_AND_CREATE);
+//				startActivity(i);
+//				finish();
+//			}
+//		});
 
 
 	}
@@ -156,7 +165,7 @@ public class LoginActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		
+
 		return true;
 	}
 
@@ -171,16 +180,15 @@ public class LoginActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
+
+
 	//I know that this is the incorrect use of this design pattern, but it will
 	//make it easier to pass these fields to the loginClass
 	public static class LoginPageViewHolder {
 		public RelativeLayout mBaseLayout;
 		public EditText mPasswordText, mUserNameText;
-		public Button mLoginButton, mSignUpButton, mEditOrCreateButton, mTakeButton;
-		public ViewFlipper mTopFlipper, mBottomFlipper;
-		
+		public Button mLoginButton, mSignUpButton;
+
 		public LoginPageViewHolder(){}
 	}
 }
