@@ -62,8 +62,8 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	/*
 	 * returns the Location data if the id exists, null otherwise
 	 */
-	public LocationData getLocationData(int i ){
-		return this.locations.size() <= i ? null : locations.get(i);
+	public LocationData getLocationData(int position ){
+		return this.locations.size() <= position ? null : locations.get(position);
 	}
 
 	@Override
@@ -83,6 +83,10 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 		return ((Tour)o).getName().equals(this.getName());
 	}
 	
+	/*
+	 * for the purpose of parse, we need to update this object in the cloud.
+	 * To do so we just dump the array of locations and add in the new one
+	 */
 	private void updateLocations(){
 		this.removeAll(LOCATIONS_KEY, this.getList(LOCATIONS_KEY));
 		this.addAll(LOCATIONS_KEY, this.locations);
