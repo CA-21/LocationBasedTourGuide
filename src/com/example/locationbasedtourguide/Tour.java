@@ -14,7 +14,7 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	public final static String NAME_KEY = "name", LOCATIONS_KEY = "locaitons";
 
 	//save this as an array when serializing out
-	private ArrayList<LocationData> locations;
+	private ArrayList<LocationData> mLocations;
 
 	/**
 	 * DO NOT CALL THIS DIRECTLY. USE TourGettingAndCreator
@@ -22,12 +22,12 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 */
 	public Tour(String name){
 		this.add(NAME_KEY,  name);
-		locations = new ArrayList<LocationData>();
+		mLocations = new ArrayList<LocationData>();
 	}
 
 	public Tour(String name, ArrayList<LocationData> locations){
 		this.add(NAME_KEY, name);
-		this.locations = locations;
+		this.mLocations = locations;
 	}
 
 	/*
@@ -35,11 +35,11 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 * key, otherwise null
 	 */
 	public void addLocation(LocationData data){
-		locations.add(data);
+		mLocations.add(data);
 	}
 
 	public void addLocation(LocationData data, int position){
-		locations.add(position,data);
+		mLocations.add(position,data);
 		
 	}
 
@@ -47,12 +47,16 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 * returns the location removed, null if no location existed with ID i
 	 */
 	public LocationData removeLocation(int i){
-		if(i >= locations.size())
+		if(i >= mLocations.size())
 			return null;
 
-		LocationData toRet = this.locations.remove(i);
-		this.locations.remove(i);
+		LocationData toRet = this.mLocations.remove(i);
+		this.mLocations.remove(i);
 		return toRet;
+	}
+	
+	public void removeLocation(String id){
+		
 	}
 
 	public String getName(){
@@ -63,7 +67,20 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 * returns the Location data if the id exists, null otherwise
 	 */
 	public LocationData getLocationData(int position ){
-		return this.locations.size() <= position ? null : locations.get(position);
+		return this.mLocations.size() <= position ? null : mLocations.get(position);
+	}
+	
+	/** Returns all of the locationData. The returned list is a shallow copy
+	 * of the internal data, so modifications to the structure of the list itself
+	 * will not be retained. To modify the structure, use the appropriate add/remove
+	 * methods provided
+	 */
+	public ArrayList<LocationData> getAllLocationData(){
+		ArrayList<LocationData> toRet = new ArrayList<LocationData>();
+		for(LocationData ld : mLocations){
+			toRet.add(ld);
+		}
+		return toRet;
 	}
 
 	@Override
@@ -89,7 +106,7 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 */
 	private void updateLocations(){
 		this.removeAll(LOCATIONS_KEY, this.getList(LOCATIONS_KEY));
-		this.addAll(LOCATIONS_KEY, this.locations);
+		this.addAll(LOCATIONS_KEY, this.mLocations);
 	}
 	
 	public void synchronousSave() throws ParseException{

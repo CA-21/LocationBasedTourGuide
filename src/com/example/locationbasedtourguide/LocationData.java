@@ -17,8 +17,39 @@ public class LocationData extends ParseObject{
 	public final static String LOCAITON_CLASS = "Locations",
 			TEXT_KEY = "text", IMAGE_KEY = "image" , AUDIO_KEY = "audio",
 			RADIUS_KEY = "raidus", ORDERING_ID_KEY = "ordering_id", GPS_KEY = "gps_location",
-			OWNING_TOUR_KEY = "owning_tour";
+			OWNING_TOUR_KEY = "owning_tour", NAME_KEY="name", NO_NAME_VALUE = "no name provided";
+	
+	//Arbitrary
+	private final static double DEFAULT_RADIUS = 10;
 
+	public LocationData(){
+		this.setName(NO_NAME_VALUE);
+	}
+	
+	public LocationData(String name){
+		this.setName(name);
+	}
+	
+	public LocationData(String name, double lat, double lon){
+		this(name);
+		this.setLocation(lat, lon);
+		this.setRadius(DEFAULT_RADIUS);
+	}
+	
+	public LocationData(String name, double lat, double lon, double radius){
+		this(name,lat,lon);
+		this.setRadius(radius);
+	}
+	
+	public LocationData(String name, double lat, double lon, double radius, String text){
+		this(name,lat,lon,radius);
+		this.setText(text);
+	}
+	
+	public LocationData(String name, double lat, double lon, String text){
+		this(name,lat,lon,DEFAULT_RADIUS,text);
+	}
+	
 	public final double getLongitude(){
 		return this.getParseGeoPoint(GPS_KEY).getLongitude();
 	}
@@ -34,24 +65,6 @@ public class LocationData extends ParseObject{
 	private Bitmap image;
 	//private SOUNDTHING sound
 
-	/*
-	public LocationData(ParseObject po){
-		this.radius = po.getDouble(RADIUS_KEY);
-		this.ordering = po.getInt(ORDERING_ID_KEY);
-
-		ParseGeoPoint geoPoint = po.getParseGeoPoint(GPS_KEY);
-		this.lon = geoPoint.getLongitude();
-		this.lat = geoPoint.getLatitude();
-
-		this.text = po.has(TEXT_KEY) ? po.getString(TEXT_KEY) : null;
-		if(po.has(IMAGE_KEY)){
-			byte[] byteImage = po.getBytes(IMAGE_KEY);
-			this.image = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
-		} else {
-			this.image = null;
-		}
-	}*/
-
 	public boolean hasText(){
 		return this.has(TEXT_KEY);
 	}
@@ -62,6 +75,10 @@ public class LocationData extends ParseObject{
 
 	public String getText(){
 		return this.getString(TEXT_KEY);
+	}
+	
+	public String getName(){
+		return this.getString(NAME_KEY);
 	}
 
 	//public Byte[] getAudio();
@@ -88,6 +105,10 @@ public class LocationData extends ParseObject{
 	public void setLocation(double lat, double lon){
 		ParseGeoPoint geoPoint = new ParseGeoPoint(lat, lon);
 		this.put("GPS",geoPoint);
+	}
+	
+	public void setName(String name){
+		this.put(NAME_KEY, name);
 	}
 
 	public void setRadius(double i ){
