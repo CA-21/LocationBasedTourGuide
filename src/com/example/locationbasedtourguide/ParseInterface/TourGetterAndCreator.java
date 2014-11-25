@@ -30,17 +30,18 @@ public class TourGetterAndCreator {
 		query.whereEqualTo("user", currentUser);
 		query.whereEqualTo(Tour.NAME_KEY, tourName);
 		try {
-			List<Tour> tour = query.find();
-			if( tour.size() == 0){
+			if(newTour){
 				Tour tourToReturn = new Tour(tourName);
 				tourToReturn.put("user",ParseUser.getCurrentUser());
 				tourToReturn.put(Tour.NAME_KEY, tourName);
 				tourToReturn.saveInBackground();
-				
 				return tourToReturn;
-			} else if(newTour){
-				return tour.get(0);
-			} 
+			} else {
+				List<Tour> tour = query.find();
+				if(tour.size() != 0){
+					return tour.get(0);
+				}
+			}
 		} catch (ParseException e) {
 
 		}
