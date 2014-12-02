@@ -17,21 +17,32 @@ import com.parse.ParseUser;
  *
  */
 public class TourGetterAndCreator {
-	
+
 	/**
 	 *	Returns a tour with name tourName. If newTour is true then
 	 *	a new tour is created and pushed to Parse, otherwise an old
 	 *	tour is retrieved from Parse. If newTour is false and no
 	 *  existing tours match the name then null is returned.
+	 *  
+	 * @param tourName Name of the tour to get/create
+	 * @param newTour true if this is to create a new tour with name tourName
+	 * @throws TourWithSameNameExistsException 
 	 */
-	public static Tour getTour(String tourName, boolean newTour){
-		ParseUser currentUser = ParseUser.getCurrentUser();
+	public static Tour getTour(String tourName, boolean newTour) throws TourWithSameNameExistsException{
+//		ParseUser currentUser = ParseUser.getCurrentUser();
 		ParseQuery<Tour> query = Tour.getQuery();
-		query.whereEqualTo("user", currentUser);
+//		if(currentUserOnly)
+//			query.whereEqualTo("user", currentUser);
+		Tour tourToReturn = null;
 		query.whereEqualTo(Tour.NAME_KEY, tourName);
+		query.include(Tour.LOCATIONS_KEY);
 		try {
 			if(newTour){
-				Tour tourToReturn = new Tour(tourName);
+				if(query.find().size() != 0){
+					throw new TourWithSameNameExistsException(tourName);
+				}
+				//note to self, check for existing.
+				tourToReturn = new Tour(tourName);
 				tourToReturn.put("user",ParseUser.getCurrentUser());
 				tourToReturn.put(Tour.NAME_KEY, tourName);
 				tourToReturn.saveInBackground();
@@ -39,15 +50,17 @@ public class TourGetterAndCreator {
 			} else {
 				List<Tour> tour = query.find();
 				if(tour.size() != 0){
-					return tour.get(0);
+					tourToReturn = tour.get(0);
+					tourToReturn.initializeTour();
 				}
 			}
 		} catch (ParseException e) {
 
 		}
-		return null;
+		//return null;
+		return tourToReturn;
 	}
-	
+
 	/**
 	 * Retrieves all tour names from Parse. If currentUserOnly is true,
 	 * only tour names of tours created by the current user will be returned
@@ -78,5 +91,18 @@ public class TourGetterAndCreator {
 			return null;
 		}
 		return toRet;
+	}
+
+	public static class TourWithSameNameExistsException extends Exception {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+
+		public TourWithSameNameExistsException(String nameOfTour){
+			super("Tour with name " + nameOfTour + " already exists.");
+		}
 	}
 }
