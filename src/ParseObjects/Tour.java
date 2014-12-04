@@ -55,7 +55,6 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 
 	public void addLocation(LocationData data, int position){
 		mLocations.add(position,data);
-
 	}
 
 	/*
@@ -87,6 +86,24 @@ public class Tour extends ParseObject implements Comparable<Tour>{
 	 */
 	public LocationData getLocationData(int position ){
 		return this.mLocations.size() <= position ? null : mLocations.get(position);
+	}
+	
+	public int getLocationDataIndex(String name){
+		for(int i = 0; i < mLocations.size();i++){
+			if(mLocations.get(i).getName().equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public LocationData getLocationData(String name){
+		for(int i = 0; i < mLocations.size();i++){
+			if(mLocations.get(i).getName().equals(name)){
+				return mLocations.get(i);
+			}
+		}
+		return null;
 	}
 
 	public Bitmap getImage(){
